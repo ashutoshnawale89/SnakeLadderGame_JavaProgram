@@ -8,6 +8,7 @@ public class SnakeLadderGame {
 		// player role die
 		dies = (int) (Math.random()*0) ;
 
+		
 		System.out.println("the dice number is   : " + dies  );
 	}
 }
