@@ -9,42 +9,46 @@ public class SnakeLadderGame {
 		public static final int Ladder_board=100;
 		
 	public static void main(String[] args) {
-		System.out.println("Welcome to the Snake Ladder Game");
+		// Variables
+				int newposition=0;
+				int player1_position=0; 
+
+				while (player1_position <= 100 )
+				{
+
+					int diesrolled = (int) (Math.random()*6) + 1;
+					System.out.println("DIES ROLLED" + diesrolled );
+
+					int instruction = (int) (Math.random()*3+1);
+					System.out.println("instruction" + instruction );
+
+					if (player1_position == 100 ) {
+						System.out.println("  ##############  YOU WIN ###########" );
+						break;   }
+
+					switch ((int)instruction )  {
+					case  NO_PLAY :
+						player1_position=player1_position + 0 ;
+						break;
+
+					case LADDER_PLAY :
+						if (player1_position+diesrolled >100) {
+							break;   }
+						player1_position= player1_position + diesrolled;
+						break;
+
+					case SNAK_PLAY :{
+						if (player1_position+diesrolled <0) {
+							break;       }
+						player1_position= (player1_position - diesrolled) ;
+					}
+					player1_position = player1_position ;
 
 
-		int diesrolled;
-		int newposition=0;
-		int player1_position=0; 
+					}
+					System.out.println("The value of PLAYER1_POSITION is  " + player1_position );
+				}
+				System.out.println("PLAYER_1 Now @ " + player1_position + "the" + "Position");
 
-		while (player1_position < Ladder_board )
-		{
-			diesrolled = (int) (Math.random()*6) + 1;
-			System.out.println("DIES ROLLED" + diesrolled );
-			int instruction = (int) (Math.random()*3+1);
-			System.out.println("instruction" + instruction );
-
-			switch ((int)instruction )  {
-			case  NO_PLAY :
-				newposition=diesrolled -(1 * diesrolled) ;
-				break;
-			case LADDER_PLAY :
-				newposition= (1 * diesrolled);
-				break;
-			case SNAK_PLAY :
-				newposition= -(1 * diesrolled) ;
-			}
-			player1_position = player1_position + newposition ;
-			System.out.println("The value of instruction is  " + player1_position );
-			if (player1_position < 0) {
-				player1_position=0;
-
-			}
-			System.out.println("Player 1 Now @ " + player1_position + "the" + "Position");
-
-
-
-			System.out.println("###########-------------  THE PLAYER 1 IS WON ------------#########  ");
+			}     
 		}
-	}
-}
-
