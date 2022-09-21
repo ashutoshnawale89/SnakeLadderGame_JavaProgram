@@ -6,56 +6,66 @@ public class SnakeLadderGame {
 		public static final  int NO_PLAY=1;
 		public static final int LADDER_PLAY=2;
 		public static final	int SNAK_PLAY=3;
-		public static final int Ladder_board=100;
+		public static final int Ladder_Board=100;
 	
 		public static void main(String[] args) {
 			System.out.println("WLCOME TO SNAKE LADDER GAME");
 			// Variables
 
 			int diesrolled;
-			int newposition=0;
-			int player1_position=0; 
-			int c=0;
-			while (player1_position <= Ladder_board ) {
-				c++;
-				System.out.println("No.ofcount"  +c+"  time ");
+			int player1_Position=0;
+			int player2_Position=0;
+			int count=0;
+			while (player1_Position <= Ladder_Board && player2_Position <= Ladder_Board) {
+				count++;
+				int position=0;
+				System.out.println("No.ofcount"  +count+"  time ");
 				diesrolled = (int) (Math.random()*6) + 1;
 				System.out.println("DIES ROLLED" + diesrolled );
 
 				int instruction = (int) (Math.random()*3+1);
 				System.out.println("instruction" + instruction );
-
-				if (player1_position == 100 ) {
-					System.out.println("  ##############  YOU WIN ###########" );
+                
+				if (player1_Position == 100 ) {
+					System.out.println("  ##############  YOU WIN Player 1###########" );
+					break;   }
+				
+				if (player2_Position == 100 ) {
+					System.out.println("  ##############  YOU WIN  Player 2###########" );
 					break;   }
 
 				switch ((int)instruction )  {
 				case  NO_PLAY :
-					player1_position=player1_position + 0 ;
+					position= 0 ;
 					break;
 
 				case LADDER_PLAY :
-					if (player1_position+diesrolled >100) {
+					if (player1_Position+diesrolled >100 && player2_Position+diesrolled > 100) {
 						break;   }
-					player1_position= player1_position + diesrolled;
+					position= diesrolled;
 					break;
 
 				case SNAK_PLAY :{
-					if (player1_position+diesrolled <0) {
+					if (player1_Position+diesrolled <0 && player2_Position+diesrolled < 0) {
 						break;       }
-					player1_position= (player1_position - diesrolled) ;
+					position= (0 - diesrolled) ;
 				}
-				player1_position = player1_position ;
-
-
 				}
-				System.out.println("The value of PLAYER1_POSITION is  " + player1_position );
+				if ((count%2)==0) {
+					player2_Position=player2_Position+diesrolled;
+					System.out.println("The value of PLAYER 2_POSITION is  " + player2_Position );		
+					System.out.println("PLAYER 2 Now @ " + player2_Position + "the" + "Position");
+				System.out.println(" ********************************************************* ");
+				}
+				else {
+					player1_Position=player1_Position+diesrolled;
+					System.out.println("The value of PLAYER 1_POSITION is  " + player1_Position );		
+					System.out.println("PLAYER 1 Now @ " + player1_Position + "the" + "Position");
+					System.out.println(" ********************************************************* ");
+				}
+				
 			}
-			System.out.println("PLAYER 1 Now @ " + player1_position + "the" + "Position");
+		}
+}
 
-
-
-			System.out.println("###########-------------  THE PLAYER 1 IS WON ------------#########  ");
-		}     
-	}
 
